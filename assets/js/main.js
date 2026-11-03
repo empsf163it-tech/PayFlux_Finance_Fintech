@@ -15,17 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleMobileMenu = (isOpen) => {
         if (!mobileMenu || !mobileBackdrop) return;
         if (isOpen) {
+            mobileBackdrop.classList.remove('hidden');
+            // Trigger reflow for smooth opacity transition
+            void mobileBackdrop.offsetWidth;
             mobileMenu.classList.remove('translate-x-full');
             mobileMenu.classList.add('translate-x-0');
-            mobileBackdrop.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+            mobileBackdrop.classList.remove('opacity-0', 'pointer-events-none');
             mobileBackdrop.classList.add('opacity-100', 'pointer-events-auto');
-            document.body.classList.add('overflow-hidden');
+            document.body.classList.add('overflow-hidden', 'mobile-menu-open');
+            if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'true');
         } else {
             mobileMenu.classList.add('translate-x-full');
             mobileMenu.classList.remove('translate-x-0');
             mobileBackdrop.classList.add('opacity-0', 'pointer-events-none');
             mobileBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
-            document.body.classList.remove('overflow-hidden');
+            document.body.classList.remove('overflow-hidden', 'mobile-menu-open');
+            if (mobileBtn) mobileBtn.setAttribute('aria-expanded', 'false');
             setTimeout(() => {
                 if (mobileMenu.classList.contains('translate-x-full')) {
                     mobileBackdrop.classList.add('hidden');
@@ -37,6 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mobileBtn) mobileBtn.addEventListener('click', () => toggleMobileMenu(true));
     if (mobileClose) mobileClose.addEventListener('click', () => toggleMobileMenu(false));
     if (mobileBackdrop) mobileBackdrop.addEventListener('click', () => toggleMobileMenu(false));
+
+    // Keyboard ESC to close drawer
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+            toggleMobileMenu(false);
+        }
+    });
+
+    // Close when clicking nav links inside mobile menu
+    if (mobileMenu) {
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMobileMenu(false);
+            });
+        });
+    }
+
+    // Auto-close drawer when resized to desktop (>= 1280px)
+    window.addEventListener('resize', () => {
+        if (window.innerWidth >= 1280 && mobileMenu && !mobileMenu.classList.contains('translate-x-full')) {
+            toggleMobileMenu(false);
+        }
+    });
 
     // ----------------------------------------------------
     // 2. Animated Counter Numbers
@@ -211,12 +239,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     const deskTabs = document.querySelectorAll('.desk-tab-btn');
     const deskPanels = document.querySelectorAll('.desk-panel');
+    const ledgerScroll = document.querySelector('.ledger-scroll');
+    const scrollProgress = document.getElementById('ledger-scroll-progress');
+
+    const updateScrollIndicator = () => {
+        if (!ledgerScroll || !scrollProgress) return;
+        const maxScroll = ledgerScroll.scrollWidth - ledgerScroll.clientWidth;
+        if (maxScroll > 0) {
+            const ratio = Math.min(Math.max(ledgerScroll.scrollLeft / maxScroll, 0), 1);
+            const trackWidth = scrollProgress.parentElement.clientWidth;
+            const thumbWidth = scrollProgress.clientWidth;
+            const maxTravel = trackWidth - thumbWidth;
+            scrollProgress.style.transform = `translateX(${ratio * maxTravel}px)`;
+        } else {
+            scrollProgress.style.transform = 'translateX(0px)';
+        }
+    };
+
+    if (ledgerScroll && scrollProgress) {
+        ledgerScroll.addEventListener('scroll', updateScrollIndicator, { passive: true });
+        window.addEventListener('resize', updateScrollIndicator);
+    }
 
     deskTabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const deskView = tab.getAttribute('data-desk');
-            deskTabs.forEach(t => t.classList.remove('active', 'bg-slate-800', 'text-sky-400', 'border-sky-400'));
-            tab.classList.add('active', 'bg-slate-800', 'text-sky-400', 'border-sky-400');
+            deskTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            if (tab.parentElement && tab.parentElement.scrollWidth > tab.parentElement.clientWidth) {
+                tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+            }
 
             deskPanels.forEach(panel => {
                 if (panel.getAttribute('data-desk') === deskView) {
@@ -225,6 +278,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     panel.classList.add('hidden');
                 }
             });
+
+            if (ledgerScroll) {
+                ledgerScroll.scrollLeft = 0;
+                updateScrollIndicator();
+            }
         });
     });
 

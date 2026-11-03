@@ -49,6 +49,54 @@ header {
     border-bottom: 1px solid rgba(226, 232, 240, 0.8);
 }
 
+/* Hide header action buttons on screens where hamburger navigation is active (<1280px) */
+@media (max-width: 1279px) {
+    .site-header .header-action-btn,
+    .site-header .cta-button {
+        display: none !important;
+    }
+}
+
+/* Ensure header buttons are strictly hidden while hamburger menu is open */
+body.mobile-menu-open .site-header .header-action-btn,
+body.mobile-menu-open .site-header .cta-button {
+    display: none !important;
+}
+
+/* Mobile Drawer & Backdrop Layering */
+#mobile-menu-backdrop {
+    z-index: 90;
+}
+
+#mobile-menu {
+    z-index: 100 !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#mobile-menu .mobile-nav-content {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+#mobile-menu .mobile-cta-footer {
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+#mobile-menu .mobile-cta-footer .cta-button {
+    display: flex !important;
+    width: 100% !important;
+    height: 46px !important;
+    border-radius: 10px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+}
+
 body.has-fixed-header {
     padding-top: var(--header-height);
 }
@@ -227,8 +275,91 @@ header .cta-button {
 }
 
 /* Financial Desk Tab Switcher Styles */
+.desk-tab-btn {
+    color: #94A3B8 !important;
+    background-color: transparent !important;
+    border: 1px solid transparent !important;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.desk-tab-btn:hover {
+    color: #F8FAFC !important;
+    background-color: rgba(30, 41, 59, 0.6) !important;
+}
+
 .desk-tab-btn.active {
-    background-color: rgba(37, 99, 235, 0.2);
-    color: #60A5FA;
-    border-bottom: 2px solid #3B82F6;
+    background-color: #1E293B !important;
+    color: #38BDF8 !important;
+    border: 1px solid rgba(56, 189, 248, 0.4) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Institutional Command Desk Table Tweaks & 3px Scroll Indicator */
+.scrollbar-none::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Custom 3px Horizontal Scrollbar for Institutional Command Desk */
+.ledger-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: #38BDF8 rgba(15, 23, 42, 0.85);
+}
+
+.ledger-scroll::-webkit-scrollbar {
+    height: 3px !important;
+}
+
+.ledger-scroll::-webkit-scrollbar-track {
+    background: rgba(30, 41, 59, 0.6) !important;
+    border-radius: 9999px;
+    margin: 0 0.5rem;
+}
+
+.ledger-scroll::-webkit-scrollbar-thumb {
+    background: #38BDF8 !important;
+    border-radius: 9999px;
+    box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+}
+
+.ledger-scroll::-webkit-scrollbar-thumb:hover {
+    background: #60A5FA !important;
+}
+
+/* Responsive Footer Layout & Spacing */
+@media (min-width: 768px) and (max-width: 1023px) {
+    footer .footer-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 2rem !important;
+    }
+    footer .footer-newsletter {
+        grid-column: span 2 / span 2 !important;
+        width: 100% !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    footer .footer-grid {
+        display: grid !important;
+        grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+        gap: 2.25rem !important;
+    }
+    footer .footer-brand {
+        grid-column: span 5 / span 5 !important;
+    }
+    footer .footer-nav {
+        grid-column: span 3 / span 3 !important;
+    }
+    footer .footer-newsletter {
+        grid-column: span 4 / span 4 !important;
+        border-top: none !important;
+        padding-top: 0 !important;
+    }
 }

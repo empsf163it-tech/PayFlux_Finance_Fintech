@@ -66,60 +66,83 @@
             </div>
 
             <!-- Header Actions -->
-            <div class="flex items-center space-x-4">
-                <a href="pricing.html" class="hidden sm:inline-flex items-center text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <a href="pricing.html" class="hidden xl:inline-flex header-action-btn items-center text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
                     <i class="fas fa-calculator mr-2 text-xs text-sky-500"></i> Fee Calculator
                 </a>
-                <a href="contact.html" class="cta-button bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-600/20 text-sm">
+                <a href="contact.html" class="hidden xl:inline-flex cta-button bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-600/20 text-sm">
                     <span>Consult Advisor</span>
                     <i class="fas fa-arrow-right ml-2 text-xs"></i>
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button type="button" id="mobile-menu-btn" class="xl:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg focus:outline-none" aria-label="Toggle Navigation">
+                <button type="button" id="mobile-menu-btn" class="xl:hidden inline-flex items-center justify-center w-10 h-10 text-slate-700 hover:text-blue-600 hover:bg-slate-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Toggle Navigation" aria-expanded="false">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </nav>
-
-        <!-- Mobile Menu Backdrop -->
-        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[45] hidden opacity-0 transition-opacity duration-300 pointer-events-none"></div>
-
-        <!-- Mobile Menu Drawer -->
-        <div id="mobile-menu" class="xl:hidden fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
-            <div class="px-6 py-6 h-full flex flex-col">
-                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-sm">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <span class="text-lg font-heading font-bold text-slate-900">Pay<span class="text-blue-600">Flux</span></span>
-                    </div>
-                    <button id="mobile-menu-close" class="p-2 text-slate-400 hover:text-slate-700 focus:outline-none" aria-label="Close Navigation">
-                        <i class="fas fa-times text-xl"></i>
-                    </button>
-                </div>
-
-                <div class="space-y-4 flex-grow text-base font-semibold text-slate-700">
-                    <a href="index.html" class="block py-2 text-blue-600 border-l-4 border-blue-600 pl-3">Home</a>
-                    <a href="about.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">About Us</a>
-                    <a href="services.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Financial Services</a>
-                    <a href="solutions.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Treasury Solutions</a>
-                    <a href="pricing.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Pricing &amp; Rates</a>
-                    <a href="contact.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Contact Advisors</a>
-                </div>
-
-                <div class="pt-6 border-t border-slate-100 space-y-3">
-                    <a href="contact.html" class="w-full cta-button bg-blue-600 text-white hover:bg-blue-700 justify-center">
-                        Schedule Consultation
-                    </a>
-                    <a href="pricing.html" class="w-full cta-button border border-slate-200 text-slate-700 hover:bg-slate-50 justify-center">
-                        Fee &amp; FX Calculator
-                    </a>
-                </div>
-            </div>
-        </div>
     </header>
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[90] hidden opacity-0 transition-opacity duration-300 pointer-events-none" aria-hidden="true"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="xl:hidden fixed top-0 right-0 h-screen h-[100dvh] w-full max-w-xs sm:w-80 bg-white z-[100] shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <!-- Top Drawer Header -->
+        <div class="flex items-center justify-between px-6 py-5 border-b border-slate-100 flex-shrink-0 bg-white">
+            <a href="index.html" class="flex items-center space-x-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-sky-400 flex items-center justify-center text-white text-sm shadow-sm">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <span class="text-lg font-heading font-extrabold tracking-tight text-slate-900">Pay<span class="text-blue-600">Flux</span></span>
+            </a>
+            <button type="button" id="mobile-menu-close" class="w-9 h-9 inline-flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors" aria-label="Close Navigation">
+                <i class="fas fa-times text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Middle Scrollable Navigation Links -->
+        <div class="mobile-nav-content flex-1 overflow-y-auto px-6 py-4">
+            <nav class="space-y-1 text-base font-semibold text-slate-700">
+                <a href="index.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg text-blue-600 bg-blue-50/80 font-bold">
+                    <span>Home</span>
+                    <i class="fas fa-chevron-right text-xs opacity-60"></i>
+                </a>
+                <a href="about.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:text-blue-600 hover:bg-slate-50 transition-colors">
+                    <span>About Us</span>
+                    <i class="fas fa-chevron-right text-xs opacity-40"></i>
+                </a>
+                <a href="services.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:text-blue-600 hover:bg-slate-50 transition-colors">
+                    <span>Financial Services</span>
+                    <i class="fas fa-chevron-right text-xs opacity-40"></i>
+                </a>
+                <a href="solutions.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:text-blue-600 hover:bg-slate-50 transition-colors">
+                    <span>Treasury Solutions</span>
+                    <i class="fas fa-chevron-right text-xs opacity-40"></i>
+                </a>
+                <a href="pricing.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:text-blue-600 hover:bg-slate-50 transition-colors">
+                    <span>Pricing &amp; Rates</span>
+                    <i class="fas fa-chevron-right text-xs opacity-40"></i>
+                </a>
+                <a href="contact.html" class="flex items-center justify-between px-3 py-2.5 rounded-lg hover:text-blue-600 hover:bg-slate-50 transition-colors">
+                    <span>Contact Advisors</span>
+                    <i class="fas fa-chevron-right text-xs opacity-40"></i>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Pinned Bottom CTAs (Always Visible in Hamburger) -->
+        <div class="mobile-cta-footer p-5 border-t border-slate-100 bg-slate-50/90 flex-shrink-0 space-y-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.03)]">
+            <a href="contact.html" class="w-full cta-button bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-600/25 justify-center text-sm font-bold">
+                <span>Consult Advisor</span>
+                <i class="fas fa-arrow-right ml-2 text-xs"></i>
+            </a>
+            <a href="pricing.html" class="w-full cta-button bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300 justify-center text-sm font-semibold">
+                <i class="fas fa-calculator mr-2 text-xs text-sky-500"></i>
+                <span>Fee Calculator</span>
+            </a>
+        </div>
+    </div>
 
     <!-- SECTION 1: HERO -->
     <section class="min-h-[90vh] flex items-center bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden hero-section py-16 lg:py-24">
@@ -703,9 +726,9 @@
     <!-- Global Footer -->
     <footer class="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
+            <div class="footer-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-10">
                 <!-- Col 1: Brand Info & 3 Social Icons -->
-                <div class="lg:col-span-5">
+                <div class="footer-brand lg:col-span-5">
                     <a href="index.html" class="flex items-center space-x-3 mb-4">
                         <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-sm">
                             <i class="fas fa-chart-line"></i>
@@ -729,7 +752,7 @@
                 </div>
 
                 <!-- Col 2: Platform Links (Reduced from 3 link sections to 1) -->
-                <div class="lg:col-span-3">
+                <div class="footer-nav lg:col-span-3">
                     <div class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-4 font-heading">Platform</div>
                     <ul class="space-y-2.5 text-sm">
                         <li><a href="index.html" class="hover:text-white transition-colors">Platform Overview</a></li>
@@ -742,13 +765,13 @@
                 </div>
 
                 <!-- Col 3: FX & Treasury Newsletter -->
-                <div class="lg:col-span-4">
+                <div class="footer-newsletter md:col-span-2 lg:col-span-4 pt-6 md:pt-8 lg:pt-0 border-t md:border-t border-slate-800/80 lg:border-t-0">
                     <div class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3 font-heading">FX &amp; Treasury Newsletter</div>
-                    <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4 max-w-lg">
                         Subscribe to weekly institutional briefings on central bank rates, cross-border FX liquidity, and corporate treasury yield.
                     </p>
-                    <form class="newsletter-form space-y-2.5">
-                        <div class="flex flex-col sm:flex-row gap-2">
+                    <form class="newsletter-form space-y-2.5 max-w-lg">
+                        <div class="flex flex-col sm:flex-row gap-2.5">
                             <input type="email" required placeholder="Enter corporate email" aria-label="Corporate email for newsletter" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 outline-none focus:border-blue-500 transition-colors">
                             <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-xl transition-colors whitespace-nowrap">
                                 Subscribe
