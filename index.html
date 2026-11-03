@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>PayFlux | Institutional Finance & Global FinTech Platform</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <meta name="description" content="PayFlux is an institutional finance and fintech platform for cross-border corporate banking, multi-currency treasury yield, commercial cards, and foreign exchange.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0F172A',
+                        'payflux-blue': '#2563EB',
+                        'payflux-cyan': '#0284C7',
+                        'payflux-emerald': '#10B981',
+                        'payflux-dark': '#0B1120',
+                        secondary: '#F8FAFC'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-white text-slate-900 has-fixed-header antialiased">
+
+    <!-- Header -->
+    <header class="site-header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 flex items-center justify-between h-20">
+            <!-- Brand Logo -->
+            <div class="flex-shrink-0 flex items-center">
+                <a href="index.html" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-sky-400 flex items-center justify-center shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+                        <i class="fas fa-chart-line text-white text-lg"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-heading font-extrabold tracking-tight text-slate-900">Pay<span class="text-blue-600">Flux</span></span>
+                        <span class="text-[9px] uppercase tracking-wider font-semibold text-slate-400 leading-none">Finance &amp; FinTech</span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Main Nav (6 Active Pages) -->
+            <div class="hidden xl:flex items-center space-x-8 text-sm font-semibold text-slate-600">
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
+                <a href="about.html" class="hover:text-blue-600 transition-colors">About</a>
+                <a href="services.html" class="hover:text-blue-600 transition-colors">Services</a>
+                <a href="solutions.html" class="hover:text-blue-600 transition-colors">Solutions</a>
+                <a href="pricing.html" class="hover:text-blue-600 transition-colors">Pricing</a>
+                <a href="contact.html" class="hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+
+            <!-- Header Actions -->
+            <div class="flex items-center space-x-4">
+                <a href="pricing.html" class="hidden sm:inline-flex items-center text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
+                    <i class="fas fa-calculator mr-2 text-xs text-sky-500"></i> Fee Calculator
+                </a>
+                <a href="contact.html" class="cta-button bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-600/20 text-sm">
+                    <span>Consult Advisor</span>
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button type="button" id="mobile-menu-btn" class="xl:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg focus:outline-none" aria-label="Toggle Navigation">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Backdrop -->
+        <div id="mobile-menu-backdrop" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[45] hidden opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu" class="xl:hidden fixed top-0 right-0 h-full w-80 bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div class="px-6 py-6 h-full flex flex-col">
+                <div class="flex items-center justify-between mb-8 pb-4 border-b border-slate-100">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="text-lg font-heading font-bold text-slate-900">Pay<span class="text-blue-600">Flux</span></span>
+                    </div>
+                    <button id="mobile-menu-close" class="p-2 text-slate-400 hover:text-slate-700 focus:outline-none" aria-label="Close Navigation">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+
+                <div class="space-y-4 flex-grow text-base font-semibold text-slate-700">
+                    <a href="index.html" class="block py-2 text-blue-600 border-l-4 border-blue-600 pl-3">Home</a>
+                    <a href="about.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">About Us</a>
+                    <a href="services.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Financial Services</a>
+                    <a href="solutions.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Treasury Solutions</a>
+                    <a href="pricing.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Pricing &amp; Rates</a>
+                    <a href="contact.html" class="block py-2 hover:text-blue-600 pl-3 transition-colors">Contact Advisors</a>
+                </div>
+
+                <div class="pt-6 border-t border-slate-100 space-y-3">
+                    <a href="contact.html" class="w-full cta-button bg-blue-600 text-white hover:bg-blue-700 justify-center">
+                        Schedule Consultation
+                    </a>
+                    <a href="pricing.html" class="w-full cta-button border border-slate-200 text-slate-700 hover:bg-slate-50 justify-center">
+                        Fee &amp; FX Calculator
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 1: HERO -->
+    <section class="min-h-[90vh] flex items-center bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden hero-section py-16 lg:py-24">
+        <!-- Background Ambient Elements -->
+        <div class="absolute top-1/4 -right-40 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-10 left-10 w-80 h-80 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full grid lg:grid-cols-12 gap-12 items-center">
+            <!-- Left Column: Value Proposition -->
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center space-x-2 py-1.5 px-4 bg-blue-50 border border-blue-200/60 text-blue-700 text-xs font-bold rounded-full mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>INSTITUTIONAL CORPORATE FINANCE &amp; FINTECH</span>
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-[1.15] text-slate-900 mb-6 tracking-tight">
+                    Modern Global Finance. <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-sky-600 to-teal-500">Zero Friction. Real-Time Liquidity.</span>
+                </h1>
+                
+                <p class="text-lg text-slate-600 mb-8 max-w-2xl leading-relaxed">
+                    PayFlux unifies cross-border commercial banking, multi-currency treasury yield, corporate expense cards, and interbank foreign exchange across 140+ sovereign currencies.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-10">
+                    <a href="services.html" class="cta-button bg-blue-600 text-white hover:bg-blue-700 shadow-lg shadow-blue-600/25">
+                        <span>Explore Financial Services</span>
+                        <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                    </a>
+                    <a href="solutions.html" class="cta-button border border-slate-300 text-slate-700 hover:bg-slate-100 hover:border-slate-400">
+                        <i class="fas fa-landmark mr-2 text-blue-600"></i>
+                        <span>Treasury Solutions</span>
+                    </a>
+                </div>
+                
+                <!-- Trust Stats Strip -->
+                <div class="pt-8 border-t border-slate-200 grid grid-cols-3 gap-6 max-w-lg">
+                    <div>
+                        <div class="text-2xl font-extrabold text-slate-900 font-heading">$14B+</div>
+                        <div class="text-xs text-slate-500 font-medium">Annual Volume</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-extrabold text-slate-900 font-heading">140+</div>
+                        <div class="text-xs text-slate-500 font-medium">Currencies</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-extrabold text-slate-900 font-heading">4.95%</div>
+                        <div class="text-xs text-slate-500 font-medium">Treasury APY</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Commercial Card & Live Clearing Ledger -->
+            <div class="lg:col-span-5 relative">
+                <div class="virtual-card-wrapper">
+                    <!-- Commercial Corporate Card -->
+                    <div class="virtual-card text-white p-7 mb-6 relative">
+                        <div class="flex justify-between items-start mb-10">
+                            <div>
+                                <span class="text-[11px] font-mono tracking-widest uppercase text-sky-200">PayFlux Commercial Platinum</span>
+                                <div class="text-lg font-heading font-bold mt-1">Meridian Capital Group</div>
+                            </div>
+                            <div class="w-12 h-8 bg-amber-400/20 border border-amber-300/40 rounded-md flex items-center justify-center">
+                                <div class="w-7 h-5 bg-gradient-to-r from-amber-200 to-amber-400 rounded-sm"></div>
+                            </div>
+                        </div>
+
+                        <div class="font-mono text-xl tracking-[0.2em] mb-6 text-slate-100">
+                            ••••  ••••  ••••  8942
+                        </div>
+
+                        <div class="flex justify-between items-end text-xs">
+                            <div>
+                                <span class="text-slate-300 block text-[10px] uppercase">Card Holder</span>
+                                <span class="font-semibold tracking-wide">ELENA ROSTOVA, CFO</span>
+                            </div>
+                            <div>
+                                <span class="text-slate-300 block text-[10px] uppercase">Valid Thru</span>
+                                <span class="font-mono">11/29</span>
+                            </div>
+                            <div class="text-xl font-bold italic tracking-wider">
+                                VISA
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Financial Settlement Card -->
+                <div class="glass-panel p-5 rounded-2xl border border-slate-200 shadow-xl card-float">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span class="text-xs font-bold text-slate-700 uppercase tracking-wider">Real-Time Clearing Desk</span>
+                        </div>
+                        <span class="text-[11px] font-mono font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">Settled T+0</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center text-sm">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-xs font-bold">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-slate-800">Frankfurt Treasury Inflow</div>
+                                    <div class="text-[11px] text-slate-400">EUR &rarr; USD Spot FX Hedged</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-emerald-600 font-mono">+$240,500.00</div>
+                                <div class="text-[10px] text-slate-400">0.05% Interbank Spread</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center text-sm">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 rounded-lg bg-slate-100 text-slate-600 flex items-center justify-center text-xs font-bold">
+                                    <i class="fas fa-credit-card"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-slate-800">Global Supplier Settlement</div>
+                                    <div class="text-[11px] text-slate-400">Commercial Card #7729 &bull; Invoice Paid</div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <div class="font-bold text-slate-800 font-mono">-$12,480.00</div>
+                                <div class="text-[10px] text-emerald-600 font-medium">1.5% Rebate Earned</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: GLOBAL TRUST & COMPLIANCE STRIP -->
+    <section class="py-10 bg-slate-900 text-slate-400 border-y border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-xs uppercase tracking-[0.25em] font-semibold text-slate-400 mb-8">
+                Institutional Regulatory Compliance &amp; Global Banking Networks
+            </p>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-center text-center">
+                <div class="flex items-center justify-center space-x-2 text-slate-300 font-semibold hover:text-white transition-colors">
+                    <i class="fab fa-cc-visa text-2xl text-blue-400"></i>
+                    <span class="tracking-wider">VISA</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2 text-slate-300 font-semibold hover:text-white transition-colors">
+                    <i class="fab fa-cc-mastercard text-2xl text-red-400"></i>
+                    <span class="tracking-wider">Mastercard</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2 text-slate-300 font-semibold hover:text-white transition-colors">
+                    <i class="fas fa-shield-halved text-xl text-emerald-400"></i>
+                    <span class="tracking-wider text-xs">PCI-DSS L1</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2 text-slate-300 font-semibold hover:text-white transition-colors">
+                    <i class="fas fa-landmark text-xl text-teal-400"></i>
+                    <span class="tracking-wider text-xs">Tier 1 Custody</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2 text-slate-300 font-semibold hover:text-white transition-colors">
+                    <i class="fas fa-globe text-xl text-sky-400"></i>
+                    <span class="tracking-wider text-xs">SWIFT Clearing</span>
+                </div>
+                <div class="flex items-center justify-center space-x-2 text-slate-300 font-semibold hover:text-white transition-colors">
+                    <i class="fas fa-scale-balanced text-xl text-amber-400"></i>
+                    <span class="tracking-wider text-xs">AML / KYC Verified</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: INTERACTIVE FX CALCULATOR & WIRE COMPARISON -->
+    <section class="py-20 bg-slate-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">Real-Time Foreign Exchange Desk</span>
+                <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 mb-4">
+                    Transparent Foreign Exchange. Zero Hidden Margins.
+                </h2>
+                <p class="text-slate-600 text-base">
+                    Traditional commercial banks quietly add 3% to 5% markups on international wire transfers. PayFlux delivers true interbank rates with guaranteed same-day settlement.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-200/80 p-8 sm:p-12 animate-on-scroll">
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <!-- Left: Inputs -->
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Corporate Outbound Amount</label>
+                            <div class="flex rounded-xl border border-slate-300 overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 bg-white">
+                                <input type="number" id="fx-amount" value="50000" min="100" class="w-full px-4 py-3.5 text-xl font-bold font-mono text-slate-800 outline-none">
+                                <select id="fx-from" class="bg-slate-100 px-4 py-3.5 font-semibold text-slate-700 border-l border-slate-200 outline-none cursor-pointer">
+                                    <option value="USD">USD ($)</option>
+                                    <option value="EUR">EUR (€)</option>
+                                    <option value="GBP">GBP (£)</option>
+                                    <option value="CAD">CAD (CA$)</option>
+                                    <option value="AUD">AUD (A$)</option>
+                                    <option value="SGD">SGD (S$)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Beneficiary Receives (Guaranteed)</label>
+                            <div class="flex rounded-xl border border-slate-300 overflow-hidden focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500 bg-slate-50">
+                                <div id="fx-result" class="w-full px-4 py-3.5 text-xl font-bold font-mono text-blue-600 flex items-center">
+                                    €46,000.00
+                                </div>
+                                <select id="fx-to" class="bg-slate-200 px-4 py-3.5 font-semibold text-slate-800 border-l border-slate-300 outline-none cursor-pointer">
+                                    <option value="EUR">EUR (€)</option>
+                                    <option value="USD">USD ($)</option>
+                                    <option value="GBP">GBP (£)</option>
+                                    <option value="JPY">JPY (¥)</option>
+                                    <option value="CAD">CAD (CA$)</option>
+                                    <option value="SGD">SGD (S$)</option>
+                                    <option value="INR">INR (₹)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="fx-rate-notice" class="text-xs text-slate-500 font-mono">
+                            1 USD = 0.9200 EUR (Real-time Interbank Rate)
+                        </div>
+                    </div>
+
+                    <!-- Right: Comparison Box -->
+                    <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white rounded-2xl p-7 flex flex-col justify-between h-full">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xs uppercase tracking-wider font-semibold text-sky-400">Wire Fee Comparison</span>
+                                <span class="text-xs bg-emerald-500/20 text-emerald-300 px-2.5 py-1 rounded-full font-semibold">92% Lower Fees</span>
+                            </div>
+
+                            <div class="space-y-4 mb-6">
+                                <div class="flex justify-between items-center text-sm border-b border-slate-700/60 pb-3">
+                                    <span class="text-slate-300">Legacy Bank Wire &amp; Spread:</span>
+                                    <span class="text-red-400 font-mono font-bold">~$1,925.00</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm border-b border-slate-700/60 pb-3">
+                                    <span class="text-slate-300">PayFlux Interbank Fee:</span>
+                                    <span class="text-emerald-400 font-mono font-bold">$175.50</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm pb-1">
+                                    <span class="text-slate-300">Clearing Settlement:</span>
+                                    <span class="text-sky-300 font-semibold font-mono">Instant T+0</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-700">
+                            <p id="fx-savings" class="text-sm font-semibold text-emerald-400 mb-4">
+                                Save ~$1,749.50 compared to traditional wire transfers
+                            </p>
+                            <a href="services.html" class="w-full cta-button bg-blue-600 hover:bg-blue-500 text-white justify-center text-sm">
+                                Open a Multi-Currency Account
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: CORE FINTECH & FINANCIAL SERVICES -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 animate-on-scroll">
+                <div>
+                    <span class="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">Commercial Financial Suite</span>
+                    <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900">
+                        Comprehensive Banking &amp; FinTech Capabilities
+                    </h2>
+                </div>
+                <a href="services.html" class="mt-4 md:mt-0 text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center text-sm">
+                    View All Financial Services <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="p-8 bg-slate-50 hover:bg-white rounded-3xl border border-slate-200/80 card-float">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-slate-900 mb-3">Cross-Border Banking</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Execute supplier disbursements and international payroll across 140+ countries via SEPA Instant, Fedwire, ACH, and Faster Payments.
+                    </p>
+                    <a href="services.html" class="text-xs font-bold text-blue-600 uppercase tracking-wider hover:underline">
+                        Learn More &rarr;
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="p-8 bg-slate-50 hover:bg-white rounded-3xl border border-slate-200/80 card-float">
+                    <div class="w-14 h-14 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-slate-900 mb-3">Commercial &amp; Virtual Cards</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Issue multi-currency Visa corporate cards with department budget limits, automated receipt matching, and 1.5% corporate cashback.
+                    </p>
+                    <a href="services.html" class="text-xs font-bold text-teal-600 uppercase tracking-wider hover:underline">
+                        Learn More &rarr;
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="p-8 bg-slate-50 hover:bg-white rounded-3xl border border-slate-200/80 card-float">
+                    <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fas fa-money-check-dollar"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-slate-900 mb-3">Merchant Payment Acquiring</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Accept global credit cards, digital wallets, and local bank transfers with instant merchant settlement and chargeback protection.
+                    </p>
+                    <a href="services.html" class="text-xs font-bold text-sky-600 uppercase tracking-wider hover:underline">
+                        Learn More &rarr;
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="p-8 bg-slate-50 hover:bg-white rounded-3xl border border-slate-200/80 card-float">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-2xl mb-6 shadow-sm">
+                        <i class="fas fa-vault"></i>
+                    </div>
+                    <h3 class="text-xl font-heading font-bold text-slate-900 mb-3">Treasury &amp; Sovereign Yield</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        Put idle operating balances to work in ring-fenced U.S. Treasury Bill sweeps, multi-entity cash pools, and forward FX hedges.
+                    </p>
+                    <a href="solutions.html" class="text-xs font-bold text-emerald-600 uppercase tracking-wider hover:underline">
+                        Learn More &rarr;
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: INSTITUTIONAL TREASURY & LIQUIDITY DESK -->
+    <section class="py-20 bg-slate-900 text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 animate-on-scroll">
+                    <div class="inline-flex items-center space-x-2 py-1 px-3 bg-blue-900/60 text-sky-400 text-xs font-mono rounded-md mb-6">
+                        <span>TREASURY &amp; LIQUIDITY DESK // T+0 CLEARING</span>
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-heading font-extrabold mb-6 leading-tight">
+                        Built for CFOs &amp; Finance Teams.<br/>
+                        <span class="text-sky-400">Complete Capital Visibility.</span>
+                    </h2>
+                    <p class="text-slate-400 text-base mb-8 leading-relaxed">
+                        Replace fragmented bank portals and manual month-end spreadsheets. Manage global subsidiary accounts, lock in forward exchange rates, and earn institutional yield from one command desk.
+                    </p>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center space-x-3 text-sm text-slate-300">
+                            <i class="fas fa-check-circle text-emerald-400"></i>
+                            <span>Up to 4.95% APY on ring-fenced U.S. Treasury Bill sweeps</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-sm text-slate-300">
+                            <i class="fas fa-check-circle text-emerald-400"></i>
+                            <span>Direct general ledger sync (NetSuite, SAP, Xero, QuickBooks)</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-sm text-slate-300">
+                            <i class="fas fa-check-circle text-emerald-400"></i>
+                            <span>Automated multi-entity tax, audit, and regulatory reporting</span>
+                        </div>
+                    </div>
+                    <a href="solutions.html" class="cta-button bg-blue-600 text-white hover:bg-blue-500 shadow-lg shadow-blue-500/20">
+                        <span>Explore Treasury Solutions</span>
+                        <i class="fas fa-landmark ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <div class="bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                        <!-- Desk Header -->
+                        <div class="flex items-center justify-between px-5 py-3.5 bg-slate-900/80 border-b border-slate-800">
+                            <div class="flex items-center space-x-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                                <span class="text-xs font-mono text-slate-400 ml-2">PayFlux Institutional Desk &mdash; Live Balance Sheet</span>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="desk-tab-btn active px-3 py-1 text-xs font-mono rounded bg-slate-800 text-sky-400" data-desk="fx">FX Liquidity</button>
+                                <button class="desk-tab-btn px-3 py-1 text-xs font-mono rounded text-slate-400 hover:text-slate-200" data-desk="yield">Treasury Yield</button>
+                                <button class="desk-tab-btn px-3 py-1 text-xs font-mono rounded text-slate-400 hover:text-slate-200" data-desk="expense">Card Ledger</button>
+                            </div>
+                        </div>
+
+                        <!-- Desk Content -->
+                        <div class="p-6 font-mono text-xs sm:text-sm text-slate-300 overflow-x-auto leading-relaxed">
+                            <!-- Panel 1: FX Liquidity -->
+                            <div class="desk-panel space-y-4" data-desk="fx">
+                                <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-800 pb-2">
+                                    <span>CURRENCY CORRIDOR</span>
+                                    <span>INTERBANK RATE</span>
+                                    <span>SETTLEMENT</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">USD / EUR (SEPA Instant)</span>
+                                    <span class="text-sky-400">0.9204 Spot</span>
+                                    <span class="text-emerald-400">T+0 Cleared</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">GBP / USD (Faster Payments)</span>
+                                    <span class="text-sky-400">1.2658 Spot</span>
+                                    <span class="text-emerald-400">T+0 Cleared</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">EUR / USD 90-Day Forward Hedge</span>
+                                    <span class="text-amber-300">1.0892 Locked</span>
+                                    <span class="text-sky-300">$2.4M Protected</span>
+                                </div>
+                                <div class="pt-2 text-xs text-emerald-400">
+                                    &bull; Effective FX Spread: 0.05% Interbank Pass-Through (Zero Hidden Wire Fees)
+                                </div>
+                            </div>
+
+                            <!-- Panel 2: Treasury Yield -->
+                            <div class="desk-panel hidden space-y-4" data-desk="yield">
+                                <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-800 pb-2">
+                                    <span>CUSTODIAL RESERVE ACCOUNT</span>
+                                    <span>PRINCIPAL BALANCE</span>
+                                    <span>ANNUALIZED YIELD</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">U.S. Sovereign T-Bill Sweep</span>
+                                    <span class="text-white">$6,500,000.00</span>
+                                    <span class="text-emerald-400">4.95% APY</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">Eurozone Institutional Reserve</span>
+                                    <span class="text-white">&euro;2,400,000.00</span>
+                                    <span class="text-emerald-400">3.65% APY</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">GBP Sterling Liquidity Pool</span>
+                                    <span class="text-white">&pound;1,850,000.00</span>
+                                    <span class="text-emerald-400">4.60% APY</span>
+                                </div>
+                                <div class="pt-2 text-xs text-sky-400">
+                                    &bull; Monthly Accrued Treasury Dividend: +$42,185.00 (Same-Day Liquidity)
+                                </div>
+                            </div>
+
+                            <!-- Panel 3: Expense & Card Ledger -->
+                            <div class="desk-panel hidden space-y-4" data-desk="expense">
+                                <div class="flex justify-between items-center text-xs text-slate-400 border-b border-slate-800 pb-2">
+                                    <span>COMMERCIAL CARD PROGRAM</span>
+                                    <span>MONTHLY ALLOCATION</span>
+                                    <span>AUDIT STATUS</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">Global Procurement &amp; Inventory</span>
+                                    <span class="text-white">$450,000 / mo</span>
+                                    <span class="text-emerald-400">100% Matched</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">Executive Travel &amp; Regional Ops</span>
+                                    <span class="text-white">$85,000 / mo</span>
+                                    <span class="text-emerald-400">VAT Verified</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-slate-800/60">
+                                    <span class="text-white font-semibold">Supplier Virtual Single-Use Cards</span>
+                                    <span class="text-white">$210,000 / mo</span>
+                                    <span class="text-sky-400">ERP Synced</span>
+                                </div>
+                                <div class="pt-2 text-xs text-emerald-400">
+                                    &bull; Corporate Cashback Rebate Credited MTD: +$11,175.00 (1.5% Unlimited)
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Desk Footer -->
+                        <div class="flex items-center justify-between px-6 py-3 bg-slate-900 border-t border-slate-800 text-xs text-slate-400">
+                            <span><i class="fas fa-shield-halved text-emerald-400 mr-1.5"></i> Safeguarding: <strong>Tier 1 Ring-Fenced Custody</strong></span>
+                            <button class="btn-copy-report text-sky-400 hover:text-sky-300 font-semibold">
+                                <i class="far fa-copy mr-1"></i> Copy Desk Summary
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: CLIENT STORIES & PERFORMANCE -->
+    <section class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 animate-on-scroll">
+                <span class="text-blue-600 font-bold uppercase tracking-widest text-xs mb-3 block">Proven Financial Impact</span>
+                <h2 class="text-3xl sm:text-4xl font-heading font-extrabold text-slate-900 mb-4">
+                    Trusted by Global CFOs &amp; Finance Leaders
+                </h2>
+                <p class="text-slate-600 text-base">
+                    From multinational trading groups to high-growth commercial enterprises, PayFlux protects margins and accelerates global cash flow.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm card-float">
+                    <div class="flex text-amber-400 text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        "Consolidating our cross-border banking with PayFlux reduced international wire failures from 4.2% to 0.05%. Their forward FX hedging saved our treasury $420,000 in Q1 alone."
+                    </p>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm">
+                            JR
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-slate-900">Julian Richter</div>
+                            <div class="text-xs text-slate-400">Chief Financial Officer, Meridian Global Holdings</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm card-float">
+                    <div class="flex text-amber-400 text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        "We issue multi-currency commercial Visa cards across 14 regional subsidiaries with strict budget caps. Automated VAT receipt matching cut our month-end close from 10 days to 24 hours."
+                    </p>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
+                            SL
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-slate-900">Sophia Lin</div>
+                            <div class="text-xs text-slate-400">VP of Corporate Treasury, Vanguard Trade Partners</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm card-float">
+                    <div class="flex text-amber-400 text-sm mb-4">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                        "PayFlux's sovereign treasury sweep unlocked 4.95% APY on our idle working capital while keeping funds accessible for instant T+0 supplier disbursements worldwide."
+                    </p>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-slate-100">
+                        <div class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-sm">
+                            MB
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-slate-900">Marc Beauchamp</div>
+                            <div class="text-xs text-slate-400">Managing Director of Finance, Continental Retail Group</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 7: CALL TO ACTION -->
+    <section class="py-20 bg-gradient-to-r from-blue-700 via-blue-600 to-sky-600 text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <span class="inline-block py-1 px-4 bg-white/10 backdrop-blur-md rounded-full text-xs font-bold uppercase tracking-wider mb-6">
+                Elevate Your Corporate Treasury
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-heading font-extrabold mb-6 max-w-3xl mx-auto leading-tight">
+                Modernize Your Financial Operations with PayFlux
+            </h2>
+            <p class="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
+                Join thousands of enterprises streamlining cross-border banking, commercial card programs, and high-yield treasury management.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="contact.html" class="cta-button bg-white text-blue-700 hover:bg-blue-50 shadow-xl shadow-blue-900/30 font-bold">
+                    <span>Schedule a Financial Consultation</span>
+                    <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                </a>
+                <a href="pricing.html" class="cta-button border-2 border-white/80 text-white hover:bg-white/10">
+                    <span>View Pricing &amp; Rates</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Footer -->
+    <footer class="bg-slate-950 text-slate-400 pt-16 pb-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 mb-12">
+                <!-- Col 1: Brand Info & 3 Social Icons -->
+                <div class="lg:col-span-5">
+                    <a href="index.html" class="flex items-center space-x-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white text-sm">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <span class="text-xl font-heading font-extrabold text-white">Pay<span class="text-blue-500">Flux</span></span>
+                    </a>
+                    <p class="text-slate-400 text-sm max-w-sm mb-6 leading-relaxed">
+                        Institutional finance and modern fintech platform powering cross-border corporate banking, commercial card programs, foreign exchange liquidity, and automated treasury yield.
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="PayFlux on LinkedIn" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white hover:border-blue-500 transition-all">
+                            <i class="fab fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="PayFlux on Twitter" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-sky-500 hover:text-white hover:border-sky-400 transition-all">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="PayFlux on Instagram" class="w-10 h-10 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-400 hover:bg-emerald-600 hover:text-white hover:border-emerald-500 transition-all">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Platform Links (Reduced from 3 link sections to 1) -->
+                <div class="lg:col-span-3">
+                    <div class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-4 font-heading">Platform</div>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Platform Overview</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About PayFlux</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Financial Services</a></li>
+                        <li><a href="solutions.html" class="hover:text-white transition-colors">Treasury Solutions</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing &amp; FX Rates</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact Advisors</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: FX & Treasury Newsletter -->
+                <div class="lg:col-span-4">
+                    <div class="text-xs font-bold uppercase tracking-wider text-slate-200 mb-3 font-heading">FX &amp; Treasury Newsletter</div>
+                    <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                        Subscribe to weekly institutional briefings on central bank rates, cross-border FX liquidity, and corporate treasury yield.
+                    </p>
+                    <form class="newsletter-form space-y-2.5">
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input type="email" required placeholder="Enter corporate email" aria-label="Corporate email for newsletter" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-white placeholder-slate-500 outline-none focus:border-blue-500 transition-colors">
+                            <button type="submit" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-xl transition-colors whitespace-nowrap">
+                                Subscribe
+                            </button>
+                        </div>
+                        <p class="newsletter-feedback text-xs text-emerald-400 hidden">
+                            <i class="fas fa-check-circle mr-1"></i> Subscribed to PayFlux FX &amp; Treasury Briefing.
+                        </p>
+                    </form>
+                    <div class="flex items-center space-x-2.5 text-emerald-400 text-xs font-mono mt-5">
+                        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                        <span>Global Clearing Desks Open (24/7 T+0)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Disclaimers & Copyright -->
+            <div class="pt-8 border-t border-slate-800 text-xs text-slate-500 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p>&copy; 2026 PayFlux Financial Technologies Inc. All rights reserved. Commercial banking, custodial safeguarding, and card issuing services provided through regulated partner financial institutions (Visa &amp; Mastercard Principal Members).</p>
+                <div class="flex space-x-6">
+                    <span class="hover:text-slate-400 cursor-pointer">Privacy Policy</span>
+                    <span class="hover:text-slate-400 cursor-pointer">Terms of Service</span>
+                    <span class="hover:text-slate-400 cursor-pointer">Regulatory Disclosures</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Core Main JS Script -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
